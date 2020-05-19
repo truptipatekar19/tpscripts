@@ -7,8 +7,8 @@
 #########################    START   ###
  
 SCRIPT_PATH=/root/scripts/backup_script/db_shs/
-DATA_PATH=/usr/sap/S4H/HDB09/backup/data
-LOG_PATH=/usr/sap/S4H/HDB09/${HOSTNAME}/trace
+DATA_PATH=/usr/sap/S4H/HDBSID/backup/data
+LOG_PATH=/usr/sap/S4H/HDBSID/${HOSTNAME}/trace
 TENANT_N=SHS
 TENANT_DIR=DB_"$TENANT_N"
 TODAY_LST="$SCRIPT_PATH"TODAY_LIST
@@ -65,7 +65,7 @@ fi
 			else
 				echo "Backup files are not verified" >> $SCRIPT_PATH/"$TENANT_DIR"_error.log
 				echo "		Backup files are not verified	"	| tee -a  $SCRIPT_PATH/status.log >> $SCRIPT_PATH/mail_status.log
-			mail -s "$(hostname) HANA TENANT $TENANT_DIR Backup Summary" -r trupti.patekar@springernature.com  trupti.patekar@springernature.com < $SCRIPT_PATH/mail_status.log
+			mail -s "$(hostname) HANA TENANT $TENANT_DIR Backup Summary" -r username@fake.com  username@fake.com < $SCRIPT_PATH/mail_status.log
 				exit 200
 			fi
 
@@ -124,9 +124,9 @@ fi
 	send_mail ()
 	{
 		if [ $(cat $SCRIPT_PATH/$TENANT_N"_CH") == "Failed" ];then
-        		mail -s "$(hostname) HANA TENANT $TENANT_DIR Backup Summary" -r trupti.patekar@springernature.com  trupti.patekar@springernature.com < $SCRIPT_PATH/mail_status.log
+        		mail -s "$(hostname) HANA TENANT $TENANT_DIR Backup Summary" -r username@fake.com  username@fake.com < $SCRIPT_PATH/mail_status.log
 		elif [ $(cat $SCRIPT_PATH/$TENANT_N"_RE") == "Failed" ];then
-        		mail -s "$(hostname) HANA TENANT $TENANT_DIR Backup Summary" -r trupti.patekar@springernature.com  trupti.patekar@springernature.com < $SCRIPT_PATH/mail_status.log
+        		mail -s "$(hostname) HANA TENANT $TENANT_DIR Backup Summary" -r username@fake.com  username@fake.com < $SCRIPT_PATH/mail_status.log
 		else
         		exit 201
 		fi
